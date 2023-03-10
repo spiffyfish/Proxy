@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Web Proxy</title>
+  </head>
+  <body>
+    <h1>Web Proxy</h1>
+    <form onsubmit="return false;">
+      <label for="url">Enter website URL:</label>
+      <input type="text" id="url" name="url">
+      <button type="button" onclick="loadWebsite()">Go</button>
+    </form>
+    <div id="website-container">
+      <iframe id="website" src=""></iframe>
+    </div>
+    <script>
+      function loadWebsite() {
+        const url = document.getElementById("url").value;
+        document.getElementById("website").src = url;
+      }
+    </script>
+  </body>
+</html>
