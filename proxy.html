@@ -12,21 +12,28 @@
     </form>
     <div id="website-container">
       <iframe id="website" src="" style="width: 100%; height: 80vh;"></iframe>
+    </div>
 
-<script>
-  // Get the iframe element
-  var iframe = document.getElementById('website');
+    <script>
+      function loadWebsite() {
+        var url = document.getElementById('url').value;
+        document.getElementById('website').src = url;
+      }
 
-  // Add a click event listener to the iframe
-  iframe.addEventListener('click', function(e) {
-    // Check if the clicked element is a link
-    if (e.target.tagName.toLowerCase() === 'a') {
-      // Prevent the link from opening in a new window
-      e.preventDefault();
-      
-      // Set the iframe src attribute to the clicked link's href
-      iframe.src = e.target.href;
-    }
-  });
-</script>
+      // Get the iframe element
+      var iframe = document.getElementById('website');
 
+      // Add a click event listener to the iframe
+      iframe.addEventListener('click', function(e) {
+        // Check if the clicked element is a link
+        if (e.target.tagName.toLowerCase() === 'a') {
+          // Prevent the link from opening in a new window
+          e.preventDefault();
+          
+          // Set the iframe src attribute to the clicked link's href
+          iframe.src = e.target.href;
+        }
+      });
+    </script>
+  </body>
+</html>
