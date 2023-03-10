@@ -2,6 +2,21 @@
 <html>
   <head>
     <title>Web Proxy</title>
+    <style>
+      #website-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+      }
+      #website {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+    </style>
   </head>
   <body>
     <h1>Web Proxy</h1>
@@ -11,7 +26,7 @@
       <button type="button" onclick="loadWebsite()">Go</button>
     </form>
     <div id="website-container">
-      <iframe id="website" src="" style="width: 100%; height: 80vh;"></iframe>
+      <iframe id="website" src=""></iframe>
     </div>
 
     <script>
@@ -20,18 +35,16 @@
         document.getElementById('website').src = url;
       }
 
-      // Get the iframe element
-      var iframe = document.getElementById('website');
+      var website = document.getElementById('website');
 
-      // Add a click event listener to the iframe
-      iframe.addEventListener('click', function(e) {
-        // Check if the clicked element is a link
-        if (e.target.tagName.toLowerCase() === 'a') {
-          // Prevent the link from opening in a new window
-          e.preventDefault();
-          
-          // Set the iframe src attribute to the clicked link's href
-          iframe.src = e.target.href;
+      website.addEventListener('load', function() {
+        var links = website.contentWindow.document.getElementsByTagName('a');
+        for (var i = 0; i < links.length; i++) {
+          links[i].addEventListener('click', function(e) {
+            e.preventDefault();
+            var href = e.target.getAttribute('href');
+            document.getElementById('website').src = href;
+          });
         }
       });
     </script>
